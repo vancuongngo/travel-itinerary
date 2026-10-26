@@ -24,13 +24,31 @@ export interface Day {
   stops: Stop[];
 }
 
+export interface Venue {
+  name: string;
+  note?: string;
+  /** Google Maps search query. */
+  place: string;
+}
+
+export interface DishImage {
+  /** File name under public/food. */
+  file: string;
+  alt: string;
+  credit: string;
+  license: string;
+  /** Wikimedia Commons page for the file. */
+  source: string;
+}
+
 export interface Dish {
   name: string;
   what: string;
-  /** Short hint on where to try it. */
-  where?: string;
-  /** Google Maps search query for `where`; omit when it's a generic tip. */
-  place?: string;
+  image?: DishImage;
+  /** Well-regarded places to try it, from travel guides (unverified). */
+  bestAt?: Venue[];
+  /** Advice when there's no specific place to name. */
+  tip?: string;
   /** Set when a stop in the itinerary already covers this dish. */
   onPlan?: string;
 }

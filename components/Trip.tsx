@@ -22,6 +22,8 @@ const ICON: Record<Category, string> = {
   "day-trip": "🧭",
 };
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const storageKey = (slug: string) => `trip-state-v1:${slug}`;
 
 interface Persisted {
@@ -221,26 +223,37 @@ export default function Trip({ trip }: { trip: TripData }) {
 
       {tab === "eat" && (
         <main className="content">
-          <p className="muted small">What to try. Dishes already covered by a stop on your plan are tagged.</p>
+          <p className="muted small">What to try, with well-regarded places from travel guides (opening hours and prices unverified). Dishes already on your plan are tagged.</p>
           {FOODS.map((section) => (
             <section key={section.title} className="food-group" style={{ "--city": section.city ? cityColor(section.city) : "var(--accent)" } as React.CSSProperties}>
               <h2>{section.title}</h2>
               <ul className="list">
                 {section.dishes.map((d) => (
-                  <li key={d.name} className="card">
+                  <li key={d.name} className="card dish">
+                    {d.image && (
+                      <figure className="dish-fig">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={`${BASE_PATH}/food/${d.image.file}`} alt={d.image.alt} loading="lazy" width={640} height={420} />
+                        <figcaption>
+                          Photo: {d.image.credit}, {d.image.license} ·{" "}
+                          <a href={d.image.source} target="_blank" rel="noopener noreferrer">source</a>
+                        </figcaption>
+                      </figure>
+                    )}
                     <h3>{d.name}</h3>
                     <p className="note">{d.what}</p>
-                    {(d.onPlan || d.where) && (
-                      <div className="card-foot">
-                        {d.onPlan && <span className="tag">On your plan: {d.onPlan}</span>}
-                        {d.where && d.place && (
-                          <a href={mapsUrl(`${d.place}, Portugal`)} target="_blank" rel="noopener noreferrer">
-                            {d.where} ↗
-                          </a>
-                        )}
-                        {d.where && !d.place && <span className="muted">{d.where}</span>}
-                      </div>
+                    {d.onPlan && <p className="card-foot"><span className="tag">On your plan: {d.onPlan}</span></p>}
+                    {d.bestAt && (
+                      <ul className="venues">
+                        {d.bestAt.map((v) => (
+                          <li key={v.name}>
+                            <a href={mapsUrl(`${v.place}, Portugal`)} target="_blank" rel="noopener noreferrer">{v.name} ↗</a>
+                            {v.note && <span className="muted small"> {v.note}</span>}
+                          </li>
+                        ))}
+                      </ul>
                     )}
+                    {d.tip && <p className="note small">💡 {d.tip}</p>}
                   </li>
                 ))}
               </ul>
