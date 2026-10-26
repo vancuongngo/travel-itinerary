@@ -24,14 +24,6 @@ export interface Day {
   stops: Stop[];
 }
 
-export interface Booking {
-  id: string;
-  label: string;
-  when: string;
-  detail: string;
-  reference: string; // placeholder, fill in locally
-}
-
 export interface City {
   name: string;
   /** Any CSS colour; used for the day strip and headings. */
@@ -49,7 +41,6 @@ export interface Trip {
   end: string; // ISO
   cities: City[];
   days: Day[];
-  bookings: Booking[];
   packing: string[];
   tips: { title: string; body: string }[];
 }

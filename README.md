@@ -1,7 +1,7 @@
 # Travel itinerary
 
 A mobile-first itinerary app built with Next.js (static export) and hosted on GitHub Pages.
-Each trip has its own page with a day-by-day timeline, a per-day map, bookings, packing and tips.
+Each trip has its own page with a day-by-day timeline, a per-day map, packing and tips.
 
 Live site: https://vancuongngo.github.io/travel-itinerary/
 
