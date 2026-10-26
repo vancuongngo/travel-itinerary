@@ -24,6 +24,42 @@ export interface Day {
   stops: Stop[];
 }
 
+export interface Venue {
+  name: string;
+  note?: string;
+  /** Google Maps search query. */
+  place: string;
+}
+
+export interface DishImage {
+  /** File name under public/food. */
+  file: string;
+  alt: string;
+  credit: string;
+  license: string;
+  /** Wikimedia Commons page for the file. */
+  source: string;
+}
+
+export interface Dish {
+  name: string;
+  what: string;
+  image?: DishImage;
+  /** Well-regarded places to try it, from travel guides (unverified). */
+  bestAt?: Venue[];
+  /** Advice when there's no specific place to name. */
+  tip?: string;
+  /** Set when a stop in the itinerary already covers this dish. */
+  onPlan?: string;
+}
+
+export interface FoodSection {
+  title: string;
+  /** Matches a name in Trip.cities for the heading colour; omit for country-wide sections. */
+  city?: string;
+  dishes: Dish[];
+}
+
 export interface City {
   name: string;
   /** Any CSS colour; used for the day strip and headings. */
@@ -41,6 +77,7 @@ export interface Trip {
   end: string; // ISO
   cities: City[];
   days: Day[];
+  foods: FoodSection[];
   packing: string[];
   tips: { title: string; body: string }[];
 }
