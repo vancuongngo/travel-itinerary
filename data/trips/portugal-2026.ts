@@ -24,6 +24,7 @@ export const portugal2026: Trip = {
         { id: "d1s2", time: "18:45", title: "Check in", category: "stay", place: "{{PORTO_HOTEL_ADDRESS}}", note: "Nearest metro: Marquês (line D), 3–5 min walk." },
         { id: "d1s3", time: "19:25", title: "Walk to Café Santiago", category: "walk", note: "~1.5 km, ~20 min, mostly downhill." },
         { id: "d1s4", time: "19:50", title: "Dinner: francesinha at Café Santiago", category: "food", coords: "41.1464,-8.6048", place: "Café Santiago Porto", note: "Since 1959; the most-cited francesinha in Porto. Closed Sundays. Huge, so share or go hungry.", rainy: true },
+        { id: "d1s4b", time: "19:50", title: "Backup dinner: Adega São Nicolau", category: "food", coords: "41.1408,-8.6142", place: "Adega São Nicolau Porto", note: "If Café Santiago has a long queue or you want something lighter than a francesinha: grilled fish, octopus and cod cakes. Rua de São Nicolau 1, open 19:00–23:00 Mon–Sat per Time Out. Small, so book ahead. Same owners run Terreiro next door.", rainy: true },
         { id: "d1s5", time: "21:15", title: "Night walk to Cais da Ribeira", category: "walk", coords: "41.1407,-8.6131", place: "Cais da Ribeira", note: "~1.3 km down to the UNESCO riverfront with the coloured houses." },
         { id: "d1s6", time: "22:00", title: "Night view from Miradouro da Serra do Pilar", category: "walk", coords: "41.1383,-8.6086", place: "Miradouro da Serra do Pilar", note: "Cross the upper deck of Dom Luís I Bridge. Free, open 24 h. Metro D from Jardim do Morro goes straight back to Marquês." },
       ],
