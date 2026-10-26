@@ -10,7 +10,7 @@ import type { MapStop } from "./DayMap";
 // Leaflet touches `window`, so the map is client-only and loaded on demand.
 const DayMap = dynamic(() => import("./DayMap"), { ssr: false });
 
-type Tab = "plan" | "bookings" | "prep";
+type Tab = "plan" | "prep";
 
 const ICON: Record<Category, string> = {
   sight: "🏛️",
@@ -58,7 +58,7 @@ function dayRouteUrl(day: Day) {
 }
 
 export default function Trip({ trip }: { trip: TripData }) {
-  const { days: DAYS, bookings: BOOKINGS, packing: PACKING, tips: TIPS } = trip;
+  const { days: DAYS, packing: PACKING, tips: TIPS } = trip;
   const cityColor = (city: string) => trip.cities.find((c) => c.name === city)?.color ?? "var(--transit)";
   const [tab, setTab] = useState<Tab>("plan");
   const [activeId, setActiveId] = useState(DAYS[0].id);
@@ -219,22 +219,6 @@ export default function Trip({ trip }: { trip: TripData }) {
         </>
       )}
 
-      {tab === "bookings" && (
-        <main className="content">
-          <h2>Bookings</h2>
-          <p className="muted small">Placeholders only. Fill references in locally, never commit real booking codes to a public repo.</p>
-          <ul className="list">
-            {BOOKINGS.map((b) => (
-              <li key={b.id} className="card">
-                <h3>{b.label}</h3>
-                <p className="muted">{b.when} · {b.detail}</p>
-                <code>{b.reference}</code>
-              </li>
-            ))}
-          </ul>
-        </main>
-      )}
-
       {tab === "prep" && (
         <main className="content">
           <h2>Packing</h2>
@@ -274,7 +258,6 @@ export default function Trip({ trip }: { trip: TripData }) {
       <nav className="tabbar" aria-label="Sections">
         {([
           ["plan", "🗓️", "Plan"],
-          ["bookings", "🎫", "Bookings"],
           ["prep", "🎒", "Prep"],
         ] as const).map(([id, icon, label]) => (
           <button key={id} aria-current={tab === id} onClick={() => setTab(id)}>

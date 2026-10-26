@@ -103,18 +103,6 @@ export const portugal2026: Trip = {
       ],
     },
   ],
-  bookings: [
-    { id: "b1", label: "Flight out", when: "Thu 5 Nov · lands 17:15", detail: "{{DEPARTURE_AIRPORT}} → OPO", reference: "{{FLIGHT_OUT_BOOKING_REF}}" },
-    { id: "b2", label: "Hotel Porto", when: "5–9 Nov (4 nights)", detail: "{{PORTO_HOTEL_NAME}}", reference: "{{PORTO_HOTEL_BOOKING_REF}}" },
-    { id: "b3", label: "Livraria Lello", when: "Fri 6 Nov · 09:00", detail: "Timed entry", reference: "{{LELLO_TICKET_REF}}" },
-    { id: "b4", label: "Torre dos Clérigos", when: "Fri 6 Nov · ~10:15", detail: "Timed entry", reference: "{{CLERIGOS_TICKET_REF}}" },
-    { id: "b5", label: "Palácio da Bolsa tour", when: "Fri 6 Nov · ~14:15", detail: "Guided tour", reference: "{{BOLSA_TICKET_REF}}" },
-    { id: "b6", label: "Taylor's Port", when: "Sat 7 Nov · 10:00", detail: "Audio tour + 3 ports", reference: "{{TAYLORS_TICKET_REF}}" },
-    { id: "b7", label: "Train Porto → Lisbon", when: "Sun 8 Nov · 06:40 → 09:30", detail: "CP", reference: "{{CP_TICKET_OUT_REF}}" },
-    { id: "b8", label: "Train Lisbon → Porto", when: "Sun 8 Nov · 19:30 → 22:43", detail: "CP", reference: "{{CP_TICKET_BACK_REF}}" },
-    { id: "b9", label: "Jerónimos Monastery", when: "Sun 8 Nov · ~14:20", detail: "Timed entry", reference: "{{JERONIMOS_TICKET_REF}}" },
-    { id: "b10", label: "Flight home", when: "Mon 9 Nov · 16:00", detail: "OPO → {{ARRIVAL_AIRPORT}}", reference: "{{FLIGHT_BACK_BOOKING_REF}}" },
-  ],
   packing: [
     "Passport / ID",
     "Travel insurance + EHIC/GHIC",
