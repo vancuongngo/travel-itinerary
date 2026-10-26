@@ -71,7 +71,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .card h3 { font-size: 1rem; }
 .card input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--accent); flex: none; margin-top: 2px; }
 .note { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
-.card-foot { display: flex; gap: 12px; align-items: center; margin-top: 8px; font-size: 0.85rem; }
+.card-foot { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; margin-top: 8px; font-size: 0.85rem; }
 .card-foot:empty { display: none; }
 .tag { padding: 2px 8px; border-radius: 999px; background: color-mix(in srgb, var(--porto) 15%, transparent); color: var(--porto); font-size: 0.75rem; font-weight: 600; }
 .stop.done .card { opacity: 0.55; }
@@ -123,3 +123,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .pin.static { flex: none; background: var(--pin); color: #fff; box-shadow: none; }
 .leaflet-container { font: inherit; }
 @media (prefers-color-scheme: dark) { .osm-tiles { filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9); } }
+
+.food-group { display: grid; gap: 10px; }
+.food-group h2 { color: var(--city); font-size: 1.2rem; }
+.food-group .card { border-left: 4px solid var(--city); }

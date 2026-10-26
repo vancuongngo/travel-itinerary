@@ -10,7 +10,7 @@ import type { MapStop } from "./DayMap";
 // Leaflet touches `window`, so the map is client-only and loaded on demand.
 const DayMap = dynamic(() => import("./DayMap"), { ssr: false });
 
-type Tab = "plan" | "prep";
+type Tab = "plan" | "eat" | "prep";
 
 const ICON: Record<Category, string> = {
   sight: "🏛️",
@@ -58,7 +58,7 @@ function dayRouteUrl(day: Day) {
 }
 
 export default function Trip({ trip }: { trip: TripData }) {
-  const { days: DAYS, packing: PACKING, tips: TIPS } = trip;
+  const { days: DAYS, foods: FOODS, packing: PACKING, tips: TIPS } = trip;
   const cityColor = (city: string) => trip.cities.find((c) => c.name === city)?.color ?? "var(--transit)";
   const [tab, setTab] = useState<Tab>("plan");
   const [activeId, setActiveId] = useState(DAYS[0].id);
@@ -219,6 +219,36 @@ export default function Trip({ trip }: { trip: TripData }) {
         </>
       )}
 
+      {tab === "eat" && (
+        <main className="content">
+          <p className="muted small">What to try. Dishes already covered by a stop on your plan are tagged.</p>
+          {FOODS.map((section) => (
+            <section key={section.title} className="food-group" style={{ "--city": section.city ? cityColor(section.city) : "var(--accent)" } as React.CSSProperties}>
+              <h2>{section.title}</h2>
+              <ul className="list">
+                {section.dishes.map((d) => (
+                  <li key={d.name} className="card">
+                    <h3>{d.name}</h3>
+                    <p className="note">{d.what}</p>
+                    {(d.onPlan || d.where) && (
+                      <div className="card-foot">
+                        {d.onPlan && <span className="tag">On your plan: {d.onPlan}</span>}
+                        {d.where && d.place && (
+                          <a href={mapsUrl(`${d.place}, Portugal`)} target="_blank" rel="noopener noreferrer">
+                            {d.where} ↗
+                          </a>
+                        )}
+                        {d.where && !d.place && <span className="muted">{d.where}</span>}
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </main>
+      )}
+
       {tab === "prep" && (
         <main className="content">
           <h2>Packing</h2>
@@ -258,6 +288,7 @@ export default function Trip({ trip }: { trip: TripData }) {
       <nav className="tabbar" aria-label="Sections">
         {([
           ["plan", "🗓️", "Plan"],
+          ["eat", "🍽️", "Eat"],
           ["prep", "🎒", "Prep"],
         ] as const).map(([id, icon, label]) => (
           <button key={id} aria-current={tab === id} onClick={() => setTab(id)}>
