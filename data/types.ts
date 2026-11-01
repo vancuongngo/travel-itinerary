@@ -1,4 +1,4 @@
-export type Category = "sight" | "food" | "transit" | "stay" | "walk" | "culture" | "day-trip";
+export type Category = "sight" | "food" | "transit" | "stay" | "walk" | "culture" | "day-trip" | "photo";
 
 export interface Stop {
   id: string;
