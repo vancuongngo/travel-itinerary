@@ -20,6 +20,7 @@ const ICON: Record<Category, string> = {
   walk: "🚶",
   culture: "🎨",
   "day-trip": "🧭",
+  photo: "📸",
 };
 
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
